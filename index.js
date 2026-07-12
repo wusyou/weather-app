@@ -2,15 +2,6 @@ import express from "express";
 import axios from "axios";
 import "dotenv/config";
 import path from "path";
-import { fileURLToPath } from "url";
-
-const app = express();
-const port = 3000;
-
-import express from "express";
-import axios from "axios";
-import "dotenv/config";
-import path from "path";
 
 const app = express();
 const port = 3000;
@@ -19,7 +10,7 @@ const apiKey = process.env.WEATHER_API_KEY;
 const weatherAPI = "https://api.weatherapi.com/v1";
 
 app.set("views", path.join(process.cwd(), "views"));
-app.set("view engine", "ejs"); // Tahasang sabihin na EJS ang gamit natin
+app.set("view engine", "ejs");
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use(express.urlencoded({ extended: true }));
 
@@ -47,6 +38,8 @@ app.post("/get-weather", async (req, res) => {
       query = location;
     } else {
       return res.render("weather.ejs", {
+        weatherData: null,
+        locationName: null,
         error: "Please provide either location name or coordinates!",
       });
     }
@@ -66,9 +59,12 @@ app.post("/get-weather", async (req, res) => {
     res.render("weather.ejs", {
       weatherData: data,
       locationName: displayName,
+      error: null,
     });
   } catch (error) {
     res.render("weather.ejs", {
+      weatherData: null,
+      locationName: null,
       error: "Location not found or API Error. Please try again.",
     });
   }
