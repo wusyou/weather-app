@@ -1,21 +1,26 @@
 import express from "express";
 import axios from "axios";
 import "dotenv/config";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 const port = 3000;
 
-const apiKey = "process.env.WEATHER_API_KEY";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const apiKey = process.env.WEATHER_API_KEY;
 const weatherAPI = "https://api.weatherapi.com/v1";
 
-app.use(express.static("public"));
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
   try {
     res.render("weather.ejs");
   } catch (error) {
-    console.log(error.response.data);
     res.status(500).send("Server Error");
   }
 });
