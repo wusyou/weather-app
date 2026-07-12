@@ -19,9 +19,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
   try {
-    res.render("weather.ejs");
+    res.render("weather.ejs", {
+      weatherData: null,
+      locationName: null,
+      error: null,
+    });
   } catch (error) {
-    res.status(500).send("Server Error");
+    res.status(500).send("Server Error sa pag-render ng page");
   }
 });
 
