@@ -1,0 +1,45 @@
+body {
+  background-color: #f8f9fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.weather-card {
+  background: linear-gradient(135deg, #00b4db, #0083b0);
+  color: white;
+  border-radius: 15px;
+}
+
+.border-white-20 {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.hourly-container {
+  display: flex !important;
+  flex-direction: row !important;
+  overflow-x: auto !important;
+  white-space: nowrap;
+  gap: 15px;
+  padding-bottom: 15px;
+  padding-top: 5px;
+}
+.hourly-card {
+  flex: 0 0 auto;
+  width: 90px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.hourly-container::-webkit-scrollbar {
+  height: 8px;
+}
+.hourly-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+.hourly-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
